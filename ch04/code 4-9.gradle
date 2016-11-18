@@ -1,0 +1,27 @@
+// 코드 4-9  Application 플러그인
+
+// Apoplication 플러그인을 적용한다.
+apply plugin: 'java'
+apply plugin: 'application'
+
+def defaultEncoding = 'UTF-8'
+compileJava.options.encoding = defaultEncoding
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+// 메인 클래스의 FQCN명(완전한 클래스명)을 지정한다.
+mainClassName = 'com.example.cli.SimpleCalc'
+applicationName = 'SimpleCalc'
+
+repositories {
+  mavenCentral()
+}
+dependencies {
+  compile 'commons-cli:commons-cli:1.2'
+}
+
+// 그레이들에서 실행할 때 어플리케이션이 표준 입력을 받을 수 있도록 설정한다.
+run {
+  standardInput = System.in
+}

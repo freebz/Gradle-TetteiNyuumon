@@ -1,0 +1,18 @@
+// 코드 7-3  환경 구성 상속
+
+configurations {
+  conf1
+  testConf1.extendsFrom conf1  // testConf1은 conf의 의존관계도 포함한다.
+}
+
+dependencies {
+  conf1 group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.1'
+  testConf1 group: 'junit', name: 'junit', version: '4.11'
+}
+
+task showDeps << {
+  // groovy-all-2.3.1.jar의 경로도 출력된다.
+  configurations.conf1.each {
+    println it.absolutePath
+  }
+}

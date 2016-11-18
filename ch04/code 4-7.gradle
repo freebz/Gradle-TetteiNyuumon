@@ -1,0 +1,19 @@
+// 코드 4-7
+
+apply plugin: 'java'
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src'
+    }
+    resources {
+      srcDir 'src'
+    }
+  }
+}
+
+// 빈 디렉토리를 복사 대상에서 제외
+processResources {
+  includeEmptyDirs = false
+}

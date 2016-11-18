@@ -1,0 +1,45 @@
+// 코드 4-6
+
+apply plugin: 'java'
+
+def defaultEncoding = 'UTF-8'
+
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  // 의존관계 해결 위치로 메이븐 중앙 저장소 추가
+  mavenCentral()
+}
+
+dependencies {
+  // 소스 세트 test 컴파일 시에 JUnit4 의존관계를 추가
+  testCompile "junit:junit:4.11"
+}
+
+// JAR 파일명은 ${baseName}-${appendix}-${version}-${clasifier}.jar
+jar {
+  baseName   = 'example'
+  appendix   = 'bin'
+  version    = '0.1'
+  classifier = 'jdk17'
+
+  // 직접 지정 (다른 속성은 무시)
+  archiveName = 'example.jar'
+
+  // MANIFEST.MF 사용자 지정
+  manifest {
+    attributes(
+    'Implementation-Title': 'Arithmetic Lib',
+    'Implementation-Version': version,
+    'Commit-Id', commitId)
+  }
+}
+
+// Javadoc 생성
+javadoc {
+  destinationDir = "${buildDir}/dist/javadoc"
+  title = 'example library V0.1'
+}

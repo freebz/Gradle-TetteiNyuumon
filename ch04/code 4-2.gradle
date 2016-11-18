@@ -1,0 +1,8 @@
+// 코드 4-2  예제 프로젝트의 빌드 스크립트
+
+apply plugin: 'java'
+
+def defaultEncoding = 'UTF-8'
+compileJava.options.encoding = defaultEncoding
+sourceCompatibility = 1.7
+targetCompatibility = 1.7

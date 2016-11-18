@@ -1,0 +1,16 @@
+// 코드 12-1  파일명 변경
+
+final docTheme = "BLUE"
+
+task docsZip(type: Zip) {
+  into("userguide") {
+    from("docs"){
+      include "**/*.html", "**/*.css"
+      rename { originalName ->
+	if (originalName == "release-note.html")
+	  return "release-note-${new Date().format('yyyyMMddHHmm')}.html"
+      }
+      rename(/HTEME_${docTheme}-(.*\.css)/, '$1')
+    }
+  }
+}

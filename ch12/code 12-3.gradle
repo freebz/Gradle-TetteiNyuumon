@@ -1,0 +1,20 @@
+// 코드 12-3  JAR 파일 생성
+
+version = 1.0
+
+task docsZip(type: Jar) {
+  // 태스크 설정(jar 파일 생성 위치 등)
+  baseName = "my-library"
+  appendix = "sources"
+  destinationDir = file("build")
+
+  // 압축 구성
+  from("src/main/java") {
+    include "**/*.jara", "**/*.groovy", "**/*.xml"
+  }
+
+  // 매니페스트 설정
+  manifest {
+    attributes("Built-By": "Gradle", "Implementation-Version": project.version)
+  }
+}

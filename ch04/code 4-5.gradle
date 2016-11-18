@@ -1,0 +1,20 @@
+// 코드 4-5
+
+apply plugin: 'java'
+
+def defaultEncoding = 'UTF-8'
+
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  // 의존관계 해결 위치로 메이븐 중앙 저장소 추가
+  mavenCentral()
+}
+
+dependencies {
+  // 소스 세트 test 컴파일 시에 JUnit4 의존관계를 추가
+  testCompile "junit:junit:4.11"
+}

@@ -1,0 +1,5 @@
+// 코드 3-1  build.gradle을 이용한 Hello World
+
+task hello << {
+  println 'Hello Gradle world!'
+}

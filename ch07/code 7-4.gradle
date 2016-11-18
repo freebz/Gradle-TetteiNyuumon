@@ -1,0 +1,23 @@
+// 코드 7-4  단순 디렉터리 저장소 이용
+
+//build.gradle
+
+repositories {
+  flatDir {
+    // 프로젝트 디렉터리의 libs, doc-repo 디렉토리를 저장소로 지정한다.
+    dirs "libs", "doc-repo"
+  }
+}
+
+dependencies {
+  conf1 group: "org.slf4j", name: "slf4j-api", version: "1.7.5"
+  conf1 group: "junit", name: "junit", version: "4.11"
+  conf1 name: "index", ext: "html"
+}
+
+task showDeps << {
+  // conf1에 설정된 의존관계의 파일 경로를 모두 출력한다.
+  configurations.conf1.each {
+    println it.absolutePath
+  }
+}

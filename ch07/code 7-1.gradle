@@ -1,0 +1,15 @@
+// 코드 7-1  build.gradle
+
+configurations {
+  conf1
+}
+
+dependencies {
+  conf1 files("lib/sample-lib.jar")
+}
+
+task showDeps << {
+  configurations.conf1.each {
+    println it.absolutePath
+  }
+}

@@ -1,0 +1,6 @@
+-classpath 'D:\\work\\Gradle TetteiNyuumon\\ch04\\EXAMPLE_PROJECT\\build\\classes\\main;D:\\work\\Gradle TetteiNyuumon\\ch04\\EXAMPLE_PROJECT\\build\\resources\\main'
+-d 'D:\\work\\Gradle TetteiNyuumon\\ch04\\EXAMPLE_PROJECT\\build\\docs\\javadoc'
+-doctitle 'EXAMPLE_PROJECT API'
+-quiet 
+-windowtitle 'EXAMPLE_PROJECT API'
+'D:\\work\\Gradle TetteiNyuumon\\ch04\\EXAMPLE_PROJECT\\src\\main\\java\\com\\example\\util\\BasicArithmeticOperations.java'

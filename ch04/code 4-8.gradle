@@ -1,0 +1,52 @@
+// 코드 4-8
+
+// 소스 세트 추가
+// 자바코드는 src/integrationTest/java
+// 리소스는  src/integrationTest/resources
+sourceSets {
+  integrationTest
+}
+
+// 디렉토리가 규칙에 맞지 않는 경우
+sourceSets {
+  integrationTest {
+    java.srcDir file('src/intTest/java')
+  }
+}
+
+// 클래스 참조시
+sourceSets {
+  integrationTest {
+    compileClasspath = sourceSets.main.output + configurations.testCompile
+    runtimeClasspaht = output + compileClasspath + configurations.testCompile
+  }
+}
+
+/*
+  소스세트 추가시
+  <sourceSet>Compile
+  <sourceSet>Runtime
+  의 환경 구성이 자동으로 추가된다.
+*/
+
+dependencies {
+  // 통합 테스트 코드의 컴파일 시 의존관계 추가
+  integrationTestCompile 'xxx:xxx:xxx'
+
+  // 통합 테스트의 실행 시 의존관계 추가
+  integrationTestRuntime 'yyy:yyy:yyy'
+}
+
+/*
+  소스세트 추가시
+  <SourceSet>CompileJava 태스크와 process<SourceSet>Resources 태스크가 추가된다.
+*/
+
+// 태스크 추가
+task integrationTest(type: Test) {
+  // 소스 세트 integrationTest의 출력을 테스트 대상으로 한다.
+  testClassesDir = sourceSets.integrationTest.output.classesDir
+
+  // 테스트 실행 시의 클래스패스로 integrationTest의 runtimeClasspath를 설정한다.
+  classpath = sourceSets.integrationTest.runtimeClasspath
+}

@@ -1,0 +1,18 @@
+// 코드 12-2  파일 내용을 변경해서 압축한다
+
+version = 1.0
+
+task docsZip(type: Zip) {
+  from 'docs'
+  into 'userguide'
+  include "**/*.html", "**/*.css"
+
+  final date = new Date()
+  filter { line ->
+    line.replaceAll(/@data@/, date.format('yyyyMMddHHmm'))
+  }
+
+  filter org.apache.tools.ant.filters.TabsToSpeces, tablength: 4
+
+  expand version: project.version
+}
